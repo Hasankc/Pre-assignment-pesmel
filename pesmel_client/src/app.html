@@ -1,0 +1,35 @@
+<template>
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped">
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Temperature</th>
+          </tr>
+          <tr repeat.for="record of rawData">
+            <td>${record.timestamp}</td>
+            <td>${record.temperature}</td>
+          </tr>
+        </table>
+      <!-- </div>
+      <div class="container-fluid">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <table class="table">
+              <tr>
+                <th>Date &amp; Time</th>
+                <th>Temperature</th>
+              </tr>
+              <tr repeat.for="record of aggregated">
+                <td>${record.min}</td>
+                <td>${record.avg}</td>
+                <td>${record.max}</td>
+              </tr>
+            </table>
+          </div> -->
+      </div>
+    </div>
+  </div>
+</template>
