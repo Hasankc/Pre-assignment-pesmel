@@ -8,48 +8,47 @@ export class App {
   private avgByDay;
   private maxByDay;
 
-  attached() {
-    this.fetchRawData();
-    this.fetchMinByDay();
-    this.fetchAvgByDay();
-    this.fetchMaxByDay();
-    
+  constructor() {
+    this.aggregatedData = [];
+  }
+
+  async attached() {
+    this.rawData = await this.fetchRawData();
+    this.minByDay = await this.fetchMinByDay();
+    this.avgByDay = await this.fetchAvgByDay();
+    this.maxByDay = await this.fetchMaxByDay();
+    this.createAggregatedData();
+  }
+
+  private createAggregatedData() {
     for (let i = 0; i < this.minByDay.length; i++) {
-      let timestamp = this.minByDay[i].timestamp;
-      let min = this.minByDay[i].temperature;
-      let avg = this.avgByDay[i].temperature;
-      let max = this.maxByDay[i].temperature;
+      let timestamp = this.minByDay[i][1];
+      let min = this.minByDay[i][0];
+      let avg = Math.round(this.avgByDay[i][0] * 10) / 10;
+      let max = this.maxByDay[i][0];
       this.aggregatedData.push(
-        {timestamp, min, avg, max}
+        { timestamp, min, avg, max }
       );
     }
   }
 
-  private fetchRawData() {
-    axios.get('http://localhost:8080/rawdata')
-      .then((response) => {
-        console.log(response);
-        this.rawData = response.data;
-      });
+  private async fetchRawData() {
+    const result = await axios.get('http://localhost:8080/rawdata');
+    return result.data;
   }
-  private fetchMinByDay() {
-    axios.get('http://localhost:8080/min/day/all')
-      .then((response) => {
-        console.log(response);
-        this.aggregatedData = response.data;
-      });     
+
+  private async fetchMinByDay() {
+    const result = await axios.get('http://localhost:8080/min/day/all');
+    return result.data;
+  }
+
+  private async fetchAvgByDay() {
+    const result = await axios.get('http://localhost:8080/avg/day/all');
+    return result.data;
+  }
+
+  private async fetchMaxByDay() {
+    const result = await axios.get('http://localhost:8080/max/day/all')
+    return result.data;
+  }
 }
-private fetchAvgByDay() {
-  axios.get('http://localhost:8080/avg/day/all')
-    .then((response) => {
-      console.log(response);
-      this.aggregatedData = response.data;
-    });
-  }
-  private fetchMaxByDay() {
-    axios.get('http://localhost:8080/max/day/all')
-      .then((response) => {
-        console.log(response);
-        this.aggregatedData = response.data;
-      });
-}}

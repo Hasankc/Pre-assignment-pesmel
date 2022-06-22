@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid" >
+  <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
           <tr>
             <th>Date &amp; Time</th>
             <th>Temperature</th>
@@ -13,19 +13,21 @@
           </tr>
         </table>
       </div>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-              <tr>
-                <th>Date &amp; Time</th>
-                <th>Temperature</th>
-              </tr>
-              <tr repeat.for="record of aggregated">
-                <td>${record.min}</td>
-                <td>${record.avg}</td>
-                <td>${record.max}</td>
-              </tr>
-          </div>
+      <div class="col">
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Minimum</th>
+            <th>Average</th>
+            <th>Maximum</th>
+          </tr>
+          <tr repeat.for="record of aggregatedData">
+            <td>${record.timestamp}</td>
+            <td class="text-end">${record.min}</td>
+            <td>${record.avg}</td>
+            <td>${record.max}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
