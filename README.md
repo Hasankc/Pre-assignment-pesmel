@@ -1,17 +1,14 @@
 # Pre-assignment-pesmel
 
-Dataset for the task and task description:
+Dataset for the task and task description
 
-Technologies to be used:
-<hr>
-Java Spring Boot backend
-Aurelia Framework frontend
-Microsoft SQL Server of PostgreSQL database
+<h2>Technologies to be used</h2>
+<li>Java Spring Boot backend</li>
+<li>Aurelia Framework frontend</li>
+<li>Microsoft SQL Server of PostgreSQL database</li>
  
-
-Goals:
-<hr>
-Create parser that parses the hourly weather data file and saves it to database
-Create aggregation function that calculates min/max/avg Air Temperature per day / week / month
-Create UI from where the raw weather data and aggredated data can be visualized
-Create also a cyclic background job which creates XML-report to file containing some data from database
+<h2>Goals</h2>
+<li>Create parser that parses the hourly weather data file and saves it to database</li>
+<li>Create aggregation function that calculates min/max/avg Air Temperature per day / week / month</li>
+<li>Create UI from where the raw weather data and aggredated data can be visualized</li>
+<li>Create also a cyclic background job which creates XML-report to file containing some data from database</li>
